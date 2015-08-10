@@ -20,4 +20,4 @@ make rpm
 ```
 
 ### Installation
-When the RPM is installed, it can be found at `/usr/local/smartfile/bin`
+When the RPM is installed, the binary can be found at `/usr/local/smartfile/bin/nginx`
