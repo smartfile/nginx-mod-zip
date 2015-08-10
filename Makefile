@@ -20,7 +20,7 @@ rpm: all
 		-t rpm \
 		-n nginxzip \
 		--config-files /etc/nginxzip/nginx.conf \
-		-v 1.0.0 \
+		-v 1.0.1 \
 		$(EXECUTABLE)=/usr/local/smartfile/bin/nginxzip \
 		nginx.conf=/etc/nginxzip/nginx.conf
 	
