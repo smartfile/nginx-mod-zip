@@ -18,3 +18,6 @@ make
 # Builds RPM: nginxzip-1.0.0-1.x86_64.rpm
 make rpm
 ```
+
+### Installation
+When the RPM is installed, it can be found at `/usr/local/smartfile/bin`
