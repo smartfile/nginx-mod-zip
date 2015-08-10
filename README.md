@@ -15,6 +15,6 @@ make
 
 ### Build RPM
 ```
-# Builds RPM: bin/nginxzip.rpm
+# Builds RPM: nginxzip-1.0.0-1.x86_64.rpm
 make rpm
 ```
