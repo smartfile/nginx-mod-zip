@@ -2,7 +2,7 @@ CFLAGS=--add-module=../mod_zip --without-http_rewrite_module
 
 SRC_DIR = src
 BIN_DIR = bin
-EXECUTABLE=$(BIN_DIR)/nginx
+EXECUTABLE=$(BIN_DIR)/nginxzip
 
 all: clean
 	mkdir $(SRC_DIR)
@@ -21,7 +21,7 @@ rpm: all
 		-n nginxzip \
 		--config-files /etc/nginxzip/nginx.conf \
 		-v 1.0.0 \
-		./bin/nginx=/usr/local/smartfile/bin \
+		$(EXECUTABLE)=/usr/local/smartfile/bin \
 		nginx.conf=/etc/nginxzip/nginx.conf
 	
 
