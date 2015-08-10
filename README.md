@@ -9,10 +9,12 @@ gem install fpm
 
 ### Build
 ```
+# Builds executable: bin/nginx
 make
 ```
 
 ### Build RPM
 ```
+# Builds RPM: bin/nginxzip.rpm
 make rpm
 ```
