@@ -13,7 +13,7 @@ yum install rpm-build
 
 ### Build
 ```
-# Builds executable: bin/nginx
+# Builds executable: bin/nginxzip
 make
 ```
 
@@ -25,4 +25,4 @@ make rpm
 ```
 
 ### Installation
-When the RPM is installed, the binary can be found at `/usr/local/smartfile/bin/nginx`
+When the RPM is installed, the binary can be found at `/usr/local/smartfile/bin/nginxzip`
