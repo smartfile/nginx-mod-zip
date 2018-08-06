@@ -25,10 +25,12 @@ pipeline {
             when {
                 branch 'jenkinsandcentos7building'
             }
-            sh 'git add .'
-            sh 'git tag -a tagName -m "Your tag comment"'
-            sh 'git commit -am "commit message"'
-            sh 'git push origin jenkinsandcentos7building'
+            steps {
+                sh 'git add .'
+                sh 'git tag -a tagName -m "Your tag comment"'
+                sh 'git commit -am "commit message"'
+                sh 'git push origin jenkinsandcentos7building'
+            }
         }
     }
     post {
