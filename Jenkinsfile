@@ -1,6 +1,7 @@
 pipeline {
-    agent { label 'amazon-t2.micro' }
-
+    agent { 
+        label 'amazon-t2.micro'
+    }
     environment {
         NGINXVERSION = '1.12.2'
     }
