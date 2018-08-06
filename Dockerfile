@@ -50,4 +50,5 @@ RUN cd /nginx-source/nginx-${NGINX_VERSION} && ./configure --prefix=/usr/share/n
 RUN cd /nginx-source/nginx-${NGINX_VERSION} && make && mkdir /nginx-source/nginx-${NGINX_VERSION}/bin && cp /nginx-source/nginx-${NGINX_VERSION}/objs/nginx /nginx-source/nginx-${NGINX_VERSION}/bin/nginxzip
 RUN gem install --no-ri --no-rdoc fpm
 RUN fpm -s dir -t rpm -n nginxzip --config-files /etc/nginxzip/nginx.conf -v ${NGINX_VERSION} /nginx-source/nginx-${NGINX_VERSION}/bin/nginxzip=/usr/local/smartfile/bin/nginxzip /etc/nginx/nginx.conf=/etc/nginxzip/nginx.conf
+RUN ls -lah
 RUN cd /nginx-source/nginx-${NGINX_VERSION} && make install
