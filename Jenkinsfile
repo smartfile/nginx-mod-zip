@@ -28,9 +28,10 @@ pipeline {
             }
             steps {
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '895d1102-4a15-43eb-b43f-1443c2df977c', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
+                    sh 'git remote set-url origin git@github.com:smartfile/nginx-mod-zip.git'
                     sh 'git add .'
-                    sh 'git tag -a tagName -m "Your tag comment"'
                     sh 'git commit -am "commit message"'
+                    sh 'git tag -a tagName -m "Your tag comment"'
                     sh 'git push git://${GIT_USERNAME}:${GIT_PASSWORD}@github.com:smartfile/nginx-mod-zip.git origin jenkinsandcentos7building'
                 }
             }
