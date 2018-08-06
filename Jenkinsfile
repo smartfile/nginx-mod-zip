@@ -11,7 +11,7 @@ pipeline {
         stage('Start') {
             steps {
                 slackSend(color: 'warning', message: "Started: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
-                git branch: 'jenkinsandcentos7building', credentialsId: 'f762be77-3885-42c6-9f4e-2075c4c5c1c9', url: 'git@github.com:smartfile/nginx-mod-zip.git'
+                git branch: \"${env.BRANCH_NAME}\", credentialsId: 'f762be77-3885-42c6-9f4e-2075c4c5c1c9', url: 'git@github.com:smartfile/nginx-mod-zip.git'
             }
         }
         stage('Build') {
