@@ -28,7 +28,7 @@ pipeline {
             sh 'git add .'
             sh 'git tag -a tagName -m "Your tag comment"'
             sh 'git commit -am "commit message"'
-            sh "git push origin jenkinsandcentos7building'
+            sh 'git push origin jenkinsandcentos7building'
         }
     }
     post {
