@@ -2,8 +2,7 @@ pipeline {
     agent { label 'amazon-t2.micro' }
 
     environment {
-        //global but overridable
-        NGINX-VERSION = '1.12.2'
+        NGINXVERSION = '1.12.2'
     }
     options {
         timeout(time: 20, unit: 'MINUTES')
@@ -16,9 +15,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'sudo docker build --build-arg nginx_version=$NGINX-VERSION --tag nginx-mod-zip .'
+                sh 'sudo docker build --build-arg nginx_version=$NGINXVERSION --tag nginx-mod-zip .'
                 sh 'sudo docker run -dit nginx-mod-zip bash'
-                sh 'sudo docker cp $(docker ps -q):/nginxzip-$NGINX-VERSION-1.x86_64.rpm .'
+                sh 'sudo docker cp $(docker ps -q):/nginxzip-$NGINXVERSION-1.x86_64.rpm .'
             }
         }
     }
