@@ -31,7 +31,7 @@ pipeline {
                     sh 'git remote set-url origin git@github.com:smartfile/nginx-mod-zip.git'
                     sh 'git add .'
                     sh 'git commit -am "commit message"'
-                    #sh 'git tag -a tagName -m "Your tag comment"'
+                    //sh 'git tag -a tagName -m "Your tag comment"'
                     sh 'git push git://${GIT_USERNAME}:${GIT_PASSWORD}@github.com:smartfile/nginx-mod-zip.git origin jenkinsandcentos7building'
                 }
             }
