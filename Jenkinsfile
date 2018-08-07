@@ -24,8 +24,10 @@ pipeline {
         }
         stage('Publish') {
             when {
-                branch 'jenkinsandcentos7building'
-                branch 'master'
+                anyOf {
+                    branch 'jenkinsandcentos7building'
+                    branch 'master'
+                }
             }
             steps {
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '9ebe9120-03fc-4911-8957-6a9dfe070e96', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
