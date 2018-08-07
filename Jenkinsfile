@@ -36,8 +36,7 @@ pipeline {
                     sh 'git commit -am \"commit message\"'
                     sh 'git status'
                     sh 'git tag -a tagName -m "Your tag comment"'
-                    sleep 20000
-                    sh 'git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/smartfile/nginx-mod-zip.git jenkinsandcentos7building'
+                    sh 'git push origin HEAD:jenkinsandcentos7building'
                 }
             }
         }
