@@ -13,7 +13,6 @@ pipeline {
             steps {
                 slackSend(color: 'warning', message: "Started: ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
                 echo "branch name is ${env.BRANCH_NAME}"
-                git branch: "${env.BRANCH_NAME}", credentialsId: 'f762be77-3885-42c6-9f4e-2075c4c5c1c9', url: 'git@github.com:smartfile/nginx-mod-zip.git'
             }
         }
         stage('Build') {
@@ -26,16 +25,17 @@ pipeline {
         stage('Publish') {
             when {
                 branch 'jenkinsandcentos7building'
+                branch 'master'
             }
             steps {
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '895d1102-4a15-43eb-b43f-1443c2df977c', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '9ebe9120-03fc-4911-8957-6a9dfe070e96', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
                     sleep 20000
-                    sh 'git remote set-url origin git@github.com:smartfile/nginx-mod-zip.git'
+                    sh 'git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/smartfile/nginx-mod-zip.git'
                     sh 'git add .'
                     sh 'git commit -am \"commit message\"'
                     sh 'git status'
-                    //sh 'git tag -a tagName -m "Your tag comment"'
-                    sh 'git push git://${GIT_USERNAME}:${GIT_PASSWORD}@github.com:smartfile/nginx-mod-zip.git origin jenkinsandcentos7building'
+                    sh 'git tag -a tagName -m "Your tag comment"'
+                    sh 'git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/smartfile/nginx-mod-zip.git jenkinsandcentos7building'
                 }
             }
         }
