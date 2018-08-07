@@ -24,10 +24,7 @@ pipeline {
         }
         stage('Publish') {
             when {
-                anyOf {
-                    branch 'jenkinsandcentos7building'
-                    branch 'master'
-                }
+                changeRequest target: 'master'
             }
             steps {
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '9ebe9120-03fc-4911-8957-6a9dfe070e96', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
@@ -36,7 +33,7 @@ pipeline {
                     sh 'git commit -am \"commit message\"'
                     sh 'git status'
                     sh 'git tag -a tagName -m "Your tag comment"'
-                    sh 'git push origin HEAD:jenkinsandcentos7building'
+                    sh 'git push origin HEAD:master'
                 }
             }
         }
