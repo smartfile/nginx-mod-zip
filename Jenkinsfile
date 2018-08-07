@@ -30,9 +30,8 @@ pipeline {
                 withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '9ebe9120-03fc-4911-8957-6a9dfe070e96', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
                     sh 'git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/smartfile/nginx-mod-zip.git'
                     sh 'git add .'
-                    sh 'git commit -am \"commit message\"'
+                    sh 'git commit -am "Publishing the latest RPM"'
                     sh 'git status'
-                    sh 'git tag -a tagName -m "Your tag comment"'
                     sh 'git push origin HEAD:master'
                 }
             }
