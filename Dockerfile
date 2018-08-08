@@ -48,7 +48,7 @@ RUN cd /nginx-source/nginx-${nginx_version} && ./configure --prefix=/usr/share/n
             --with-cc-opt='-O2 -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -pie -fPIE -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic'
 RUN cd /nginx-source/nginx-${nginx_version} && make && mkdir /nginx-source/nginx-${nginx_version}/bin && cp /nginx-source/nginx-${nginx_version}/objs/nginx /nginx-source/nginx-${nginx_version}/bin/nginxzip
 RUN gem install --no-ri --no-rdoc fpm
-RUN fpm -s dir -t rpm -n nginxzip --config-files /etc/nginxzip/nginx.conf -v ${nginx_version} /nginx-source/nginx-${nginx_version}/bin/nginxzip=/usr/local/smartfile/bin/nginxzip /etc/nginx/nginx.conf=/etc/nginxzip/nginx.conf
+RUN fpm -s dir -t rpm -n nginxzip --config-files /etc/nginx/nginx.conf -v ${nginx_version} /nginx-source/nginx-${nginx_version}/bin/nginxzip=/usr/bin/nginx /etc/nginx/nginx.conf=/etc/nginx/nginx.conf
 RUN ls -lah
 RUN cd /nginx-source/nginx-${nginx_version} && ls -lah
 RUN cd /nginx-source/nginx-${nginx_version} && make install
