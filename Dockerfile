@@ -1,5 +1,5 @@
 FROM centos:7.5.1804
-ARG nginx_version
+ARG nginx_version=1.12.2
 RUN echo "nginx version is $nginx_version"
 COPY nginx.conf /etc/nginx/nginx.conf
 RUN yum makecache && yum -y groupinstall 'Development Tools' && yum install -y zlib-devel ruby-devel gcc make rpm-build libevent libevent-devel libaio-devel openssl-devel pcre-devel && mkdir /nginx-source
@@ -10,7 +10,7 @@ RUN cd /nginx-source && curl -O https://ftp.pcre.org/pub/pcre/pcre-8.42.tar.gz
 RUN cd /nginx-source && tar -zxvf /nginx-source/pcre-8.42.tar.gz
 RUN cd /nginx-source && curl -O http://nginx.org/download/nginx-${nginx_version}.tar.gz
 RUN cd /nginx-source && tar -zxvf /nginx-source/nginx-${nginx_version}.tar.gz
-
+RUN mkdir -p /tmp/.nginx/client_body /tmp/.nginx/proxy_temp /tmp/.nginx/fastcgi_temp /tmp/.nginx/uwsgi_temp /tmp/.nginx/scgi_temp 
 # Compile Nginx with mod_zip
 #RUN curl -O https://nginx.org/download/nginx-${nginx_version}.tar.gz && tar zxvf nginx-${nginx_version}.tar.gz
 
@@ -52,5 +52,6 @@ RUN cd /nginx-source/nginx-${nginx_version} && make && mkdir /nginx-source/nginx
 RUN cd /nginx-source/nginx-${nginx_version} && ls -lah
 RUN cd /nginx-source/nginx-${nginx_version} && make install
 RUN gem install --no-ri --no-rdoc fpm
-RUN fpm -s dir -t rpm -n nginxzip --config-files /etc/nginx/* -v ${nginx_version} /nginx-source/nginx-${nginx_version}/bin/nginxzip=/usr/bin/nginx /etc/nginx/nginx.conf=/etc/nginx/nginx.conf
+RUN fpm -s dir -t rpm -n nginxzip --config-files /etc/nginx -v ${nginx_version} /nginx-source/nginx-${nginx_version}/bin/nginxzip=/usr/bin/nginx /etc/nginx=/etc/nginx
 RUN ls -lah
+RUN rpm -qlp nginxzip-1.12.2-1.x86_64.rpm
