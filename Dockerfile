@@ -6,6 +6,8 @@ RUN yum makecache && yum -y groupinstall 'Development Tools' && yum install -y z
 RUN cd /nginx-source && git clone https://github.com/evanmiller/mod_zip.git
 #RUN cd /nginx-source && git clone https://github.com/travcunn/nginx-upload-module.git
 RUN cd /nginx-source && git clone https://github.com/fdintino/nginx-upload-module.git
+RUN cd /nginx-source && curl -O https://ftp.pcre.org/pub/pcre/pcre-8.42.tar.gz
+RUN cd /nginx-source && tar -zxvf /nginx-source/pcre-8.42.tar.gz
 RUN cd /nginx-source && curl -O http://nginx.org/download/nginx-${nginx_version}.tar.gz
 RUN cd /nginx-source && tar -zxvf /nginx-source/nginx-${nginx_version}.tar.gz
 
@@ -31,6 +33,7 @@ RUN cd /nginx-source/nginx-${nginx_version} && ./configure --prefix=/usr/share/n
             --add-module=/nginx-source/mod_zip \
             --with-file-aio \
             --with-threads \
+            --with-pcre=/nginx-source/pcre-8.42 \
             --with-http_addition_module \
             --with-http_auth_request_module \
             --with-http_flv_module \
@@ -42,7 +45,6 @@ RUN cd /nginx-source/nginx-${nginx_version} && ./configure --prefix=/usr/share/n
             --with-http_sub_module \
             --with-http_stub_status_module \
             --with-http_secure_link_module \
-            --without-http_rewrite_module \
             --with-stream \
             --with-debug \
             --with-cc-opt='-O2 -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -pie -fPIE -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic'
