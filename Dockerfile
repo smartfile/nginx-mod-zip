@@ -1,5 +1,5 @@
 FROM centos:7.5.1804
-ARG nginx_version=1.12.2
+ARG nginx_version
 RUN echo "nginx version is $nginx_version"
 COPY nginx.conf /etc/nginx/nginx.conf
 RUN yum makecache && yum -y groupinstall 'Development Tools' && yum install -y zlib-devel ruby-devel gcc make rpm-build libevent libevent-devel libaio-devel openssl-devel pcre-devel && mkdir /nginx-source
