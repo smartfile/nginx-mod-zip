@@ -52,6 +52,6 @@ RUN cd /nginx-source/nginx-${nginx_version} && make && mkdir /nginx-source/nginx
 RUN cd /nginx-source/nginx-${nginx_version} && ls -lah
 RUN cd /nginx-source/nginx-${nginx_version} && make install
 RUN gem install --no-ri --no-rdoc fpm
-RUN fpm -s dir -t rpm -n nginxzip --config-files /etc/nginx -v ${nginx_version} /nginx-source/nginx-${nginx_version}/bin/nginxzip=/usr/bin/nginx /etc/nginx=/etc/nginx
+RUN fpm -s dir -t rpm -n nginxzip --config-files /etc/nginx -v ${nginx_version} /nginx-source/nginx-${nginx_version}/bin/nginxzip=/usr/bin/nginx /etc/nginx=/etc/
 RUN ls -lah
 RUN rpm -qlp nginxzip-1.12.2-1.x86_64.rpm
